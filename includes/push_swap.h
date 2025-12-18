@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:35:44 by vebastos          #+#    #+#             */
-/*   Updated: 2025/12/15 15:06:58 by vebastos         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:06:01 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,12 @@ typedef struct		s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-char	**ft_split(char const *s, char c);
-char	*copy_next_word(char const *s, char c, int *i);
+int	is_number(char *str);
 long	ft_atol(const char	*str);
-int		is_number(char **str);
-int		ft_strlen(const char *str);
-int		get_words(char const *s, char c);
+char	**ft_split(char const *s, char c);
+int	get_words(char const *s, char c);
+char	*copy_next_word(char const *s, char c, int *i);
 void	free_split(char **arr, int index);
+int	ft_strlen(const char *str);
 
 #endif

@@ -6,48 +6,59 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:35:06 by vebastos          #+#    #+#             */
-/*   Updated: 2025/12/15 15:13:20 by vebastos         ###   ########.fr       */
+/*   Updated: 2025/12/18 15:12:40 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
 
-int	is_number(char **str)
+int	is_number(char *str)
 {
 	int	i;
-	int j;
 
 	i = 0;
-	j = 0;
-	while (str[j])
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	if (!str[i])
+		return (0);
+	while (str[i])
 	{
-		while (str[j][i])
-		{
-			if (!(str[j][i] >= '0' && str[j][i] <= '9' && !(str[j][i] <= 32)))
-			{
-				printf("Error\n");
-				return (0);
-			}
-			printf("Value: %c\n", str[j][i]);
-			i++;
-		}
-		j++;
+		if (str[i] < '0' || str[i] > '9')
+			return (0);
+		i++;	
 	}
 	return (1);
 }
 
+
 int	main(int ac, char **av)
 {
-	int	i;
+	int		i;
+	int		j;
+	long	num;
+	char	**arr;
 
-	i = 1;
+	i = 1;   
 	while (i < ac)
 	{
-		if (!is_number(ft_split(av[i], ' ')))
+		arr = ft_split(av[i], ' ');
+		if (!arr)
+			return (0);
+		j = 0;
+		if (!is_number(arr[j]))
 		{
-			printf("Error");
-			//free stuff
+			free(arr);
+			printf("Error valid number\n");
+			return (1);
 		}
+		num = ft_atol(arr[j]);
+		if (num > INT_MAX || num < INT_MIN)
+		{
+			free(arr);
+			printf("Error more bits then int\n");
+			return (0);
+		}
+		free(arr);
 		i++;
 	}
 	return (0);
