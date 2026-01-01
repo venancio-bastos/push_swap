@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   input_check.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 12:35:06 by vebastos          #+#    #+#             */
-/*   Updated: 2025/12/18 15:12:40 by vebastos         ###   ########.fr       */
+/*   Created: 2026/01/01 18:44:52 by vebastos          #+#    #+#             */
+/*   Updated: 2026/01/01 18:54:28 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./includes/push_swap.h"
+#include "../includes/push_swap.h"
 
 int	is_number(char *str)
 {
@@ -30,36 +30,21 @@ int	is_number(char *str)
 	return (1);
 }
 
-
-int	main(int ac, char **av)
+int process_args(char **arr)
 {
-	int		i;
-	int		j;
-	long	num;
-	char	**arr;
+    int     j;
+    long    num;
 
-	i = 1;   
-	while (i < ac)
-	{
-		arr = ft_split(av[i], ' ');
-		if (!arr)
-			return (0);
-		j = 0;
-		if (!is_number(arr[j]))
-		{
-			free(arr);
-			printf("Error valid number\n");
-			return (1);
-		}
-		num = ft_atol(arr[j]);
-		if (num > INT_MAX || num < INT_MIN)
-		{
-			free(arr);
-			printf("Error more bits then int\n");
-			return (0);
-		}
-		free(arr);
-		i++;
-	}
-	return (0);
+    j = 0;
+    while (arr[j])
+    {
+        if (!is_number(arr[j]))
+            return (0);
+            
+        num = ft_atol(arr[j]);
+        if (num > INT_MAX || num < INT_MIN)
+            return (0);
+        j++;
+    }
+    return (1);
 }

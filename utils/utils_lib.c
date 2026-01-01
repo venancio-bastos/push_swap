@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_lib.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:10:56 by vebastos          #+#    #+#             */
-/*   Updated: 2025/12/18 14:24:50 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/01 18:42:46 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,28 @@ long	ft_atol(const char	*str)
 	}
 	return (result * sign);
 }
-char	**ft_split(char const *s, char c)
-{
-	int		i;
-	int		x;
-	char	**arr;
 
-	arr = malloc(sizeof(char *) * (get_words(s, c) + 1));
-	if (!arr)
-		return (NULL);
+int	ft_strlen(const char *str)
+{
+	int i;
+
 	i = 0;
-	x = 0;
-	while (s[i])
-	{
-		while (s[i] == c)
-			i++;
-		if (s[i] == '\0')
-			break ;
-		arr[x] = copy_next_word(s, c, &i);
-		if (!arr[x])
-		{
-			free_split(arr, x);
-			return (NULL);
-		}
-		x++;
-	}
-	arr[x] = NULL;
-	return (arr);
+	while (str[i])
+		i++;
+	return (i);
+}
+
+void    free_matrix(char **arr)
+{
+    int i;
+
+    i = 0;
+    if (!arr)
+        return ;
+    while (arr[i])
+    {
+        free(arr[i]);
+        i++;
+    }
+    free(arr);
 }

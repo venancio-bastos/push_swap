@@ -1,42 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_helper.c                                           :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/15 13:34:19 by vebastos          #+#    #+#             */
-/*   Updated: 2025/12/15 13:34:33 by vebastos         ###   ########.fr       */
+/*   Created: 2026/01/01 17:50:45 by vebastos          #+#    #+#             */
+/*   Updated: 2026/01/01 17:55:40 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
-int	ft_strlen(const char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	get_words(char const *s, char c)
-{
-	int	i;
-	int	total;
-
-	i = 0;
-	total = 0;
-	while (s[i])
-	{
-		if (s[i] != c && (i == 0 || s[i - 1] == c))
-			total++;
-		i++;
-	}
-	return (total);
-}
 
 char	*copy_next_word(char const *s, char c, int *i)
 {
@@ -75,4 +49,49 @@ void	free_split(char **arr, int index)
 		j++;
 	}
 	free(arr);
+}
+
+int	get_words(char const *s, char c)
+{
+	int	i;
+	int	total;
+
+	i = 0;
+	total = 0;
+	while (s[i])
+	{
+		if (s[i] != c && (i == 0 || s[i - 1] == c))
+			total++;
+		i++;
+	}
+	return (total);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	int		i;
+	int		x;
+	char	**arr;
+
+	arr = malloc(sizeof(char *) * (get_words(s, c) + 1));
+	if (!arr)
+		return (NULL);
+	i = 0;
+	x = 0;
+	while (s[i])
+	{
+		while (s[i] == c)
+			i++;
+		if (s[i] == '\0')
+			break ;
+		arr[x] = copy_next_word(s, c, &i);
+		if (!arr[x])
+		{
+			free_split(arr, x);
+			return (NULL);
+		}
+		x++;
+	}
+	arr[x] = NULL;
+	return (arr);
 }
