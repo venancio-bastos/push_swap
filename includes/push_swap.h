@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:35:44 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/01 18:58:03 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/07 01:58:54 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,26 @@ typedef struct		s_stack
 	struct s_stack	*prev;
 }					t_stack;
 
-int	is_number(char *str);
-long	ft_atol(const char	*str);
-char	**ft_split(char const *s, char c);
-int	get_words(char const *s, char c);
+//main
+void print_stack(t_stack *stack);
+//ft_split
 char	*copy_next_word(char const *s, char c, int *i);
 void	free_split(char **arr, int index);
+int	get_words(char const *s, char c);
+char	**ft_split(char const *s, char c);
+//input_check
+int	is_number(char *str);
+int process_args(t_stack **stack, char **arr);
+int	check_duplicates(t_stack *stack, int num);
+//stack_utils
+t_stack	*stack_new(int content);
+t_stack	*stack_lst(t_stack *stack);
+void	stack_add_back(t_stack **stack, t_stack *new_node);
+void	free_stack(t_stack **stack);
+//utils_lib
+long	ft_atol(const char	*str);
 int	ft_strlen(const char *str);
-int process_args(char **arr);
+void    free_matrix(char **arr);
 
 
 #endif

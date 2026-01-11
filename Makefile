@@ -6,7 +6,7 @@
 #    By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/09 12:36:23 by vebastos          #+#    #+#              #
-#    Updated: 2026/01/01 18:12:49 by vebastos         ###   ########.fr        #
+#    Updated: 2026/01/07 02:05:05 by vebastos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ CFLAGS = -Wall -Werror -Wextra
 
 SRC = src/push_swap.c \
 	  utils/ft_split.c \
-	  utils/utils_lib.c
+	  utils/input_check.c \
+	  utils/stack_utils.c \
+	  utils/utils_lib.c \
 	  
 OBJ = $(SRC:.c=.o)
 
