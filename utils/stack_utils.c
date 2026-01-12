@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:26:31 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/07 02:05:24 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/12 16:45:40 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_stack	*stack_new(int content)
 	return (new_node);
 }
 
-t_stack	*stack_lst(t_stack *stack)
+t_stack	*stack_last(t_stack *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -46,7 +46,7 @@ void	stack_add_back(t_stack **stack, t_stack *new_node)
 		*stack = new_node;
 		return;
 	}
-	last_node = stack_lst(*stack);
+	last_node = stack_last(*stack);
 	last_node->next = new_node;
 	new_node->prev = last_node;
 }

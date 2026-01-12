@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:35:06 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/07 02:00:00 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/12 12:13:13 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ int	main(int ac, char **av)
 	int		i;
 	char	**arr;
 	t_stack	*stack_a;
-	
+	t_stack *stack_b;
+
 	if (ac < 2)
-		return (0);
+	return (0);
 	i = 1;
+	stack_b = NULL;
 	stack_a = NULL;
 	while (i < ac)
 	{
