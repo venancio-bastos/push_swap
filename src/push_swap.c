@@ -6,23 +6,23 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:35:06 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 17:14:08 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 21:28:18 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	sort_choice(t_stack **a, t_stack **b)
+void	sort_choice(t_stack **a, t_stack **b)
 {
 	if (stack_len(*a) == 2)
-		sa(a);
+		sa(a, true);
 	else if (stack_len(*a) == 3)
 		sort_three(a);
 	else
 		sort_stacks(a, b);
 }
 
-static int	parse_arg(t_stack **a, char *av)
+int	parse_arg(t_stack **a, char *av)
 {
 	char	**arr;
 

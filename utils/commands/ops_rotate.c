@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:44:17 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 18:25:24 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 21:15:04 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,24 @@ void	rotate(t_stack **stack)
 	(*stack)->prev = NULL;
 }
 
-void	ra(t_stack **a)
+void	ra(t_stack **a, bool print)
 {
 	rotate(a);
-	write(1, "ra\n", 3);
+	if (print)
+		write(1, "ra\n", 3);
 }
 
-void	rb(t_stack **b)
+void	rb(t_stack **b, bool print)
 {
 	rotate(b);
-	write(1, "rb\n", 3);
+	if (print)
+		write(1, "rb\n", 3);
 }
 
-void	rr(t_stack **a, t_stack **b)
+void	rr(t_stack **a, t_stack **b, bool print)
 {
 	rotate(a);
 	rotate(b);
-	write(1, "rr\n", 3);
+	if (print)
+		write(1, "rr\n", 3);
 }

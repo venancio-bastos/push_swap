@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_tiny.c                                        :+:      :+:    :+:   */
+/*   checker_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/01/14 15:25:05 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 21:20:06 by vebastos         ###   ########.fr       */
+/*   Created: 2026/01/15 22:28:56 by vebastos          #+#    #+#             */
+/*   Updated: 2026/01/15 22:32:12 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/push_swap.h"
+#include "../includes/push_swap.h"
 
-void	sort_three(t_stack **a)
+int	ft_checker_strcmp(const char *s1, const char *s2)
 {
-	t_stack	*biggest_node;
-
-	biggest_node = find_max(*a);
-	if (biggest_node == *a)
-		ra(a, true);
-	else if ((*a)->next == biggest_node)
-		rra(a, true);
-	if ((*a)->value > (*a)->next->value)
-		sa(a, true);
+	while (*s1 && *s2 && *s1 == *s2)
+	{
+		s1++;
+		s2++;
+	}
+	return ((unsigned char)*s1 - (unsigned char)*s2);
 }

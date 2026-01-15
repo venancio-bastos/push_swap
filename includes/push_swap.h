@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:35:44 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 18:51:27 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 22:32:35 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,10 @@ typedef struct s_stack
 	struct s_stack	*prev;
 }	t_stack;
 
+int		ft_checker_strcmp(const char *s1, const char *s2);
+void	parse_command(t_stack **a, t_stack **b, char *line);
+void	sort_choice(t_stack **a, t_stack **b);
+int		parse_arg(t_stack **a, char *av);
 long	ft_atol(const char	*str);
 int		ft_strlen(const char *str);
 void	free_matrix(char **arr);
@@ -69,19 +73,19 @@ t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
 void	current_index(t_stack *stack);
 void	swap(t_stack **head);
-void	sa(t_stack **stack_a);
-void	sb(t_stack **stack_b);
-void	ss(t_stack **stack_a, t_stack **stack_b);
+void	sa(t_stack **stack_a, bool print);
+void	sb(t_stack **stack_b, bool print);
+void	ss(t_stack **stack_a, t_stack **stack_b, bool print);
 void	reverse_rotate(t_stack **stack);
-void	rra(t_stack **stack_a);
-void	rrb(t_stack **stack_b);
-void	rrr(t_stack **stack_a, t_stack **stack_b);
+void	rra(t_stack **stack_a, bool print);
+void	rrb(t_stack **stack_b, bool print);
+void	rrr(t_stack **stack_a, t_stack **stack_b, bool print);
 void	rotate(t_stack **stack);
-void	ra(t_stack **stack_a);
-void	rb(t_stack **stack_b);
-void	rr(t_stack **stack_a, t_stack **stack_b);
+void	ra(t_stack **stack_a, bool print);
+void	rb(t_stack **stack_b, bool print);
+void	rr(t_stack **stack_a, t_stack **stack_b, bool print);
 void	push(t_stack **src, t_stack **dest);
-void	pa(t_stack **stack_a, t_stack **stack_b);
-void	pb(t_stack **stack_a, t_stack **stack_b);
+void	pa(t_stack **stack_a, t_stack **stack_b, bool print);
+void	pb(t_stack **stack_a, t_stack **stack_b, bool print);
 
 #endif

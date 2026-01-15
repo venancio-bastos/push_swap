@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:20:49 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 18:33:20 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 21:19:00 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ void	prep_for_push(t_stack **stack, t_stack *top_node, char stack_name)
 		if (stack_name == 'a')
 		{
 			if (top_node->above_middle)
-				ra(stack);
+				ra(stack, true);
 			else
-				rra(stack);
+				rra(stack, true);
 		}
 		else if (stack_name == 'b')
 		{
 			if (top_node->above_middle)
-				rb(stack);
+				rb(stack, true);
 			else
-				rrb(stack);
+				rrb(stack, true);
 		}
 	}
 }
@@ -45,7 +45,7 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 	if (cheapest_node->above_middle && cheapest_node->target_node->above_middle)
 	{
 		while (*b != cheapest_node->target_node && *a != cheapest_node)
-			rr(a, b);
+			rr(a, b, true);
 		current_index(*a);
 		current_index(*b);
 	}
@@ -53,13 +53,13 @@ void	move_a_to_b(t_stack **a, t_stack **b)
 		&& !(cheapest_node->target_node->above_middle))
 	{
 		while (*b != cheapest_node->target_node && *a != cheapest_node)
-			rrr(a, b);
+			rrr(a, b, true);
 		current_index(*a);
 		current_index(*b);
 	}
 	prep_for_push(a, cheapest_node, 'a');
 	prep_for_push(b, cheapest_node->target_node, 'b');
-	pb(b, a);
+	pb(b, a, true);
 }
 
 void	set_target_b(t_stack *a, t_stack *b)
@@ -98,9 +98,9 @@ void	min_on_top(t_stack **a)
 	while ((*a)->value != min_node->value)
 	{
 		if (min_node->above_middle)
-			ra(a);
+			ra(a, true);
 		else
-			rra(a);
+			rra(a, true);
 	}
 }
 
@@ -110,9 +110,9 @@ void	sort_stacks(t_stack **a, t_stack **b)
 
 	len_a = stack_len(*a);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a);
+		pb(b, a, true);
 	if (len_a-- > 3 && !stack_sorted(*a))
-		pb(b, a);
+		pb(b, a, true);
 	while (len_a-- > 3 && !stack_sorted(*a))
 	{
 		init_nodes_a(*a, *b);
@@ -125,7 +125,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		current_index(*b);
 		set_target_b(*a, *b);
 		prep_for_push(a, (*b)->target_node, 'a');
-		pa(a, b);
+		pa(a, b, true);
 	}
 	current_index(*a);
 	min_on_top(a);

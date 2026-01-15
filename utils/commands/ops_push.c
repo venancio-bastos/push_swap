@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:44:53 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 18:22:59 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 21:14:25 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,16 @@ void	push(t_stack **src, t_stack **dest)
 	}
 }
 
-void	pa(t_stack **stack_a, t_stack **stack_b)
+void	pa(t_stack **stack_a, t_stack **stack_b, bool print)
 {
 	push(stack_b, stack_a);
-	write(1, "pa\n", 3);
+	if (print)
+		write(1, "pa\n", 3);
 }
 
-void	pb(t_stack **stack_b, t_stack **stack_a)
+void	pb(t_stack **stack_b, t_stack **stack_a, bool print)
 {
 	push(stack_a, stack_b);
-	write(1, "pb\n", 3);
+	if (print)
+		write(1, "pb\n", 3);
 }

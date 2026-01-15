@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:26:31 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 18:39:36 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 23:07:59 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	free_stack(t_stack **stack)
 bool	stack_sorted(t_stack *stack)
 {
 	if (!stack)
-		return (1);
+		return (true);
 	while (stack->next)
 	{
 		if (stack->value > stack->next->value)
