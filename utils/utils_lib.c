@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 13:10:56 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/01 18:42:46 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:38:21 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ long	ft_atol(const char	*str)
 
 int	ft_strlen(const char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -49,17 +49,17 @@ int	ft_strlen(const char *str)
 	return (i);
 }
 
-void    free_matrix(char **arr)
+void	free_matrix(char **arr)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    if (!arr)
-        return ;
-    while (arr[i])
-    {
-        free(arr[i]);
-        i++;
-    }
-    free(arr);
+	i = 0;
+	if (!arr)
+		return ;
+	while (arr[i])
+	{
+		free(arr[i]);
+		i++;
+	}
+	free(arr);
 }

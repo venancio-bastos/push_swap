@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/01 18:44:52 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/07 02:06:42 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:44:28 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,30 @@ int	is_number(char *str)
 	{
 		if (str[i] < '0' || str[i] > '9')
 			return (0);
-		i++;	
+		i++;
 	}
 	return (1);
 }
 
-int process_args(t_stack **stack, char **arr)
+int	process_args(t_stack **stack, char **arr)
 {
-    int     j;
-    long    num;
+	int		j;
+	long	num;
 
-    j = 0;
-    while (arr[j])
-    {
-        if (!is_number(arr[j]))
-            return (0);
-            
-        num = ft_atol(arr[j]);
-        if (num > INT_MAX || num < INT_MIN)
-            return (0);
+	j = 0;
+	while (arr[j])
+	{
+		if (!is_number(arr[j]))
+			return (0);
+		num = ft_atol(arr[j]);
+		if (num > INT_MAX || num < INT_MIN)
+			return (0);
 		if (check_duplicates(*stack, (int)num))
-			return(0);
+			return (0);
 		stack_add_back(stack, stack_new((int)num));
-        j++;
-    }
-    return (1);
+		j++;
+	}
+	return (1);
 }
 
 int	check_duplicates(t_stack *stack, int num)

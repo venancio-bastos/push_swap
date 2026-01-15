@@ -6,41 +6,41 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:44:17 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/12 16:44:33 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:25:24 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/push_swap.h"
+
 void	rotate(t_stack **stack)
 {
-	t_stack	*tmp;
 	t_stack	*last_node;
 
-	if (!stack || !*stack || !(*stack)->next)
-		return;
-	tmp = *stack;
+	if (!*stack || !(*stack)->next)
+		return ;
 	last_node = stack_last(*stack);
-	*stack = tmp->next;
+	last_node->next = *stack;
+	(*stack)->prev = last_node;
+	*stack = (*stack)->next;
+	(*stack)->prev->next = NULL;
 	(*stack)->prev = NULL;
-	last_node->next = tmp;
-	tmp->prev = last_node;
-	tmp->next = NULL;
 }
 
-void ra(t_stack **stack_a)
+void	ra(t_stack **a)
 {
-    rotate(stack_a);
-    write(1, "ra\n", 3);
+	rotate(a);
+	write(1, "ra\n", 3);
 }
 
-void rb(t_stack **stack_b)
+void	rb(t_stack **b)
 {
-    rotate(stack_b);
-    write(1, "rb\n", 3);
+	rotate(b);
+	write(1, "rb\n", 3);
 }
 
-void rr(t_stack **stack_a, t_stack **stack_b)
+void	rr(t_stack **a, t_stack **b)
 {
-    rotate(stack_a);
-    rotate(stack_b);
-    write(1, "rr\n", 3);
+	rotate(a);
+	rotate(b);
+	write(1, "rr\n", 3);
 }

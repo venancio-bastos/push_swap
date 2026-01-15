@@ -6,44 +6,45 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/12 16:43:55 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/12 16:44:09 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/15 18:25:06 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/push_swap.h"
 
 void	swap(t_stack **head)
 {
 	t_stack	*first;
 	t_stack	*second;
-	int	tmp_value;
-	int	tmp_index;
 
-	if (!head || !*head || !(*head)->next)
-		return;
+	if (!*head || !(*head)->next)
+		return ;
 	first = *head;
 	second = first->next;
-	tmp_value = first->value;
-	first->value = second->value;
-	second->value = tmp_value;
-	tmp_index = first->index;
-	first->index = second->index;
-	second->index = tmp_index;
+	first->next = second->next;
+	second->next = first;
+	second->prev = first->prev;
+	first->prev = second;
+	if (first->next)
+		first->next->prev = first;
+	*head = second;
 }
 
-void    sa(t_stack **stack_a)
+void	sa(t_stack **a)
 {
-    swap(stack_a);
-    write(1, "sa\n", 3);
+	swap(a);
+	write(1, "sa\n", 3);
 }
 
-void    sb(t_stack **stack_b)
+void	sb(t_stack **b)
 {
-    swap(stack_b);
-    write(1, "sb\n", 3);
+	swap(b);
+	write(1, "sb\n", 3);
 }
 
-void    ss(t_stack **stack_a, t_stack **stack_b)
+void	ss(t_stack **a, t_stack **b)
 {
-    swap(stack_a);
-    swap(stack_b);
-    write(1, "ss\n", 3);
+	swap(a);
+	swap(b);
+	write(1, "ss\n", 3);
 }
