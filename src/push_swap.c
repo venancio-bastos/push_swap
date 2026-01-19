@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/15 12:35:06 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 21:28:18 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/19 13:28:14 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sort_choice(t_stack **a, t_stack **b)
 	if (stack_len(*a) == 2)
 		sa(a, true);
 	else if (stack_len(*a) == 3)
-		sort_three(a);
+		sort_tiny(a);
 	else
 		sort_stacks(a, b);
 }

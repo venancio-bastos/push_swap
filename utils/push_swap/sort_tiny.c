@@ -6,13 +6,13 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:25:05 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 21:20:06 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/19 13:28:14 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	sort_three(t_stack **a)
+void	sort_tiny(t_stack **a)
 {
 	t_stack	*biggest_node;
 

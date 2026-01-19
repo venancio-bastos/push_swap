@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/14 15:20:49 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 21:19:00 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/19 13:28:14 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	sort_stacks(t_stack **a, t_stack **b)
 		init_nodes_a(*a, *b);
 		move_a_to_b(a, b);
 	}
-	sort_three(a);
+	sort_tiny(a);
 	while (*b)
 	{
 		current_index(*a);

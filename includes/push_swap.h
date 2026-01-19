@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 12:35:44 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 22:32:35 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/19 13:28:14 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	move_a_to_b(t_stack **a, t_stack **b);
 void	set_target_b(t_stack *a, t_stack *b);
 void	sort_stacks(t_stack **a, t_stack **b);
 void	min_on_top(t_stack **a);
-void	sort_three(t_stack **a);
+void	sort_tiny(t_stack **a);
 int		stack_len(t_stack *stack);
 t_stack	*find_max(t_stack *stack);
 t_stack	*find_min(t_stack *stack);
