@@ -6,7 +6,7 @@
 /*   By: vebastos <vebastos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 16:03:35 by vebastos          #+#    #+#             */
-/*   Updated: 2026/01/15 21:50:59 by vebastos         ###   ########.fr       */
+/*   Updated: 2026/01/21 14:11:54 by vebastos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,19 +132,3 @@ char	*get_next_line(int fd)
 	}
 	return (line);
 }
-
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	int fd = open("text.txt", 0);
-// 	char *stash = get_next_line(fd);
-// 	while (stash)
-// 	{
-// 		printf("%s", stash);
-// 		free(stash);
-// 		stash = get_next_line(fd);
-// 	}
-// 	free(stash);
-// 	return (0);
-// }
