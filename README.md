@@ -1,97 +1,107 @@
-*This project has been created as part of the 42 curriculum by ruisilva*
+# push_swap
 
-# Push_swap
+A sorting program for integers, built for the 42 Porto curriculum. It prints the sequence of stack operations needed to sort a list of numbers, using two stacks (`a` and `b`) and the operations defined in the subject. The goal is to use as few operations as possible.
 
-## Description
-
-**Push_Swap** is a 42 school project about algorithms. The goal is to sort data on a stack, using only a limited number of operations and an auxiliary stack. To pass, you have to use the lowest possible number of operations. To make this achievable, you have to choose an algorithm for data sorting.
-
-The program calculates and displays on the standard output the operations needed to sort the integers passed as arguments.
+A bonus `checker` program reads a sequence of operations from the standard input, applies it to the input numbers, and prints `OK` if the stack ends up sorted or `KO` if it does not.
 
 ## Algorithm
 
-I implemented the **Turk  Algorithm** a highly efficient strategy for this specific problem in this context. It works by pushing nodes from stack A to B intelligently (calculating the cheapest cost to move), and then moving them back to A in the correct order:
+Stack `a` starts with the input numbers and stack `b` is empty. For lists of more than three numbers, the program uses the Turk algorithm:
+
+1. Push numbers from `a` to `b`, leaving three numbers in `a`. For each candidate, it computes the cheapest combined rotation cost to move it.
+2. Sort the three numbers left in `a` with a fixed set of moves.
+3. Move numbers from `b` back to `a` one at a time, each at the position where it belongs. Each move uses the cheapest rotation cost computed beforehand.
+4. Rotate `a` so that the smallest number is at the top.
+
+Stacks are doubly linked lists of nodes that hold the value, the index, the target position and the cost of each move.
+
+Special cases:
+- Two numbers: a single `sa` if they are out of order.
+- Three numbers: a fixed sequence of moves (`sort_tiny`).
 
 ## Operations
 
-- `sa` (swap a): Swap the first 2 elements at the top of stack a.
-Do nothing if there is only one element or none.
-- `sb` (swap b): Swap the first 2 elements at the top of stack b.
-Do nothing if there is only one element or none.
-- `ss` : sa and sb at the same time.
-- `pa` (push a): Take the first element at the top of b and put it at the top of a.
-Do nothing if b is empty.
-- `pb` (push b): Take the first element at the top of a and put it at the top of b.
-Do nothing if a is empty.
-- `ra` (rotate a): Shift up all elements of stack a by 1.
-The first element becomes the last one.
-- `rb` (rotate b): Shift up all elements of stack b by 1.
-The first element becomes the last one.
-- `rr` : ra and rb at the same time.
-- `rra` (reverse rotate a): Shift down all elements of stack a by 1.
-The last element becomes the first one.
-- `rrb` (reverse rotate b): Shift down all elements of stack b by 1.
-The last element becomes the first one.
-- `rrr` : rra and rrb at the same time.
+| Operation | Effect |
+|-----------|--------|
+| `sa`, `sb`, `ss` | Swap the first two elements of `a`, of `b`, or both |
+| `pa`, `pb` | Move the top element from `b` to `a`, or from `a` to `b` |
+| `ra`, `rb`, `rr` | Rotate `a`, `b`, or both upwards |
+| `rra`, `rrb`, `rrr` | Reverse rotate `a`, `b`, or both downwards |
 
-## Instructions
-### 1. Compilation
-To compile the `push_swap` program:
+## Build
 
 ```bash
-make
+make          # builds push_swap
+make bonus    # builds checker
+make clean    # removes object files
+make fclean   # removes object files and both programs
+make re       # fclean + all
 ```
 
-To compile the bonus `checker` program:
+## Usage
 
-```bash
-make bonus
-```
-
-### 2. Execution
-Run the `push_swap` program with a list of integers:
+Arguments can be separate numbers or a single quoted string:
 
 ```bash
 ./push_swap 2 1 3 6 5 8
+./push_swap "2 1 3 6 5 8"
 ```
 
-You can run the `checker` to verify the output:
+With no arguments, or with invalid input, the program writes `Error` to standard error and exits.
+
+Input is rejected when it contains:
+- a value that is not an integer;
+- a value outside the `int` range;
+- a duplicate number.
+
+Verify a sequence with the checker:
 
 ```bash
-ARG="4 67 3 87 23"; ./push_swap $ARG | ./checker $ARG
+ARG="4 67 3 87 23"
+./push_swap $ARG | ./checker $ARG
 ```
 
-You can also run the `checker` by itself and type on the standard input the instructions you wish to use yourself:
+Or type operations by hand and finish with `Ctrl-D`:
 
 ```bash
 ./checker 3 2
+sa
 ```
 
-If you then type `sa` and press `Enter`, then `CTRL-D`, the program should output `OK`.
+The checker prints `OK` if the sequence sorts the numbers, `KO` if it does not, and `Error` for invalid input.
 
+## Tests
 
-### 3. Cleaning
-To remove object files:
+I checked the program in two ways:
 
-```bash
-make clean
+- **Correctness:** random inputs of 3, 5, 100 and 500 numbers (three seeds each), checked with `checker`. All 12 results were `OK`.
+- **Sanitizers:** the `push_swap` and `checker` builds, compiled with AddressSanitizer and UndefinedBehaviorSanitizer, showed no errors or leaks on normal inputs or on invalid inputs (duplicates, letters, overflow, empty input).
+
+Operation counts from those runs:
+
+| Numbers | Operations observed |
+|---------|---------------------|
+| 3       | 1 to 2              |
+| 5       | 5 to 8              |
+| 100     | 560 to 621          |
+| 500     | 5127 to 5653        |
+
+The 500-number case with the highest count (5653) is above the 5500 operations usually expected for this benchmark. The other two cases are below it.
+
+## Known limitations
+
+- Only three random seeds were tested per size, so these counts are a sample, not a guarantee for every input.
+- The 500-number case above exceeded 5500 operations in one of three runs.
+
+## Project structure
+
 ```
-
-To remove object files and programs:
-
-```bash
-make fclean
+includes/push_swap.h        # node structure and prototypes
+src/push_swap.c             # entry point and argument handling
+src/checker.c               # bonus checker
+utils/commands/             # the eleven stack operations
+utils/push_swap/            # sorting logic: Turk algorithm and tiny cases
+utils/input_check.c         # argument parsing and validation
+utils/stack_utils.c         # stack helpers
+utils/gnl/                  # get_next_line, used by the checker
 ```
-
-## Resources
-
-In this project I have researched which algorithms were there to tackle this problem and which one was efficient enough for the ammount of moves required for the benchmark.
-
-I ultimately decided to choose the Turk because it calculates which moves are more effective to make before doing so, also, it takes full advantage of the doubled linked lists I decided on using turning it more efficient.
-
-For the project I have watched **tutorials on Youtube** explaining how the algorithm worked and during the project i used **GEMINI PRO** to help me keep track of the whole logic behind it and to assist me with bug patching.
-
-### AI Usage
-- **Turk Concept:** AI was used to understand the math behind the algorithm and how to implement.
-- **C Concepts:** AI was consulted to clarify specific C concepts.
-- **Project Structure:** AI assisted in clarifying the best practices in projects with multiple makefiles. AI also helped in formatting this README.
